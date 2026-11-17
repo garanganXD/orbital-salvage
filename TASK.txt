@@ -1,0 +1,18 @@
+Build a complete, original browser game for the best-game-01 bounty in this repository.
+
+THE GAME — "ORBITAL SALVAGE" (arcade/score-chase, original concept):
+You pilot a small salvage tug in a debris field orbiting a planet. Physics-based: your ship drifts, you thrust and rotate with keyboard (arrows/WASD), mouse aims the tractor beam. Debris pieces (rocks, broken satellites, glowing cargo pods) drift and collide. Use the tractor beam (hold left mouse) to reel cargo pods into your hold before they burn up in the planet's atmosphere below. Bigger pieces give more points but pull harder. Watch your hull: fast rocks damage you on impact. Fuel is limited — refill by docking at the orbiting station that circles the planet. Score = value salvaged; run ends when hull or fuel hits zero. Difficulty ramps: more junk, faster rocks, station orbit shrinks. Include: title screen with START, HUD (score, hull, fuel, hold capacity), a game-over screen with final score + RESTART, and at least 3 sound effects (WebAudio, generated, no files needed). Canvas 2D rendering, 60fps, smooth controls with inertia. Make it FEEL good: particles on capture, screen shake on impacts, glow effects.
+
+STRUCTURE (important for the judge — clear names, one job per file):
+game/index.html loads ES modules from game/src/: config.js, audio.js, input.js, entities.js, world.js, physics.js, hud.js, render.js, game.js (loop + states: TITLE, PLAYING, GAMEOVER). Update index.html title to ORBITAL SALVAGE. Keep every source file focused and well-named — the judge reads file/function names. No external network loads; everything under game/.
+
+RULES:
+- Rewrite EVERY file in app/... sorry, game/src/ completely with write_file in this session (starter files are placeholders). Every counted line must be written by you in this session.
+- Only origin allowed: none. No fetch, no imports from URLs.
+- node --check every game/src/*.js.
+- Screenshots: 3 (or 4) JPEG/PNG, long side <=1280, short side >=480, each <=256 KiB: (1) title screen, (2) gameplay with HUD visible and action happening, (3) game-over screen with score. Use the kit's screenshot approach: node game/src/shots.js pattern from the starter (adapt it), or a puppeteer script with /opt/ms-playwright/chromium-1208/chrome-linux64/chrome. Serve game/ with python3 -m http.server, capture real renders. Compress with ffmpeg to JPEG q:v 2 if over 256 KiB.
+- Build: mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts — verify out/ has game/, screenshots/, dossier.json and exit 0.
+- Commit everything with git (user.name garanganXD, user.email callmeescaa@gmail.com).
+- Print ENTRY COMPLETE plus a summary when done.
+
+PACE: the provider rate-limits (HTTP 429). After each 429, wait and retry. Never give up. Work through the whole task in this one session.
